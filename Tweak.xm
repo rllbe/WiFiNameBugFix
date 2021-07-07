@@ -67,7 +67,7 @@ void mod_WFLogger__WFLog_message_(id self, SEL _cmd, int level, char *message, .
     va_list ap;
     va_start(ap, message);
     if (!check_format_with_arguments(message, ap)) {
-        orig_WFLogger__WFLog_message_(self, _cmd, level, (char *)[@(message) stringByReplacingOccurrencesOfString:@"%" withString:@"%%"].UTF8String);
+        orig_WFLogger__WFLog_message_(self, _cmd, level, "%s", message);
         return;
     }
     va_end(ap);
@@ -75,7 +75,7 @@ void mod_WFLogger__WFLog_message_(id self, SEL _cmd, int level, char *message, .
     va_start(ap, message);
     NSString *formatted = [[NSString alloc] initWithFormat:@(message) locale:0 arguments:ap];
     va_end(ap);
-    orig_WFLogger__WFLog_message_(self, _cmd, level, (char *)[formatted stringByReplacingOccurrencesOfString:@"%" withString:@"%%"].UTF8String);
+    orig_WFLogger__WFLog_message_(self, _cmd, level, "%@", formatted);
     [formatted release];
 }
 
