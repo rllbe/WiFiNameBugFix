@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>A restart of wifid is required for change to take effect. 
+Note: With WFLogger enabled the tweak will try its best to protect you from crashing but there's still a certain chance of crash with malformed names. </string>
+			<key>label</key>
+			<string>For Power Users</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>in.net.mario.tweak.wfloggerfixprefs</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>in.net.mario.tweak.wfloggerfixprefs</string>
+			<key>key</key>
+			<string>enablelog</string>
+			<key>label</key>
+			<string>Enable WFLogger</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>WiFiNameBugFix</string>
+</dict>
+</plist>
