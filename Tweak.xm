@@ -17,7 +17,7 @@ kern_return_t get_vm_protection_64(mach_port_t port, vm_address_t address, vm_pr
 }
 
 int get_char_type(char c) {
-    char p, *pp = "psS@";
+    char p, *pp = "psPS@";
     while ((p = *(pp++))) if (c == p) return 3;
     pp = "*acdefginouxACDEFGOUX";
     while ((p = *(pp++))) if (c == p) return 2;
