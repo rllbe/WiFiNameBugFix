@@ -1,7 +1,7 @@
 Package: in.net.mario.tweak.wfloggerfix
 Name: WiFiNameBugFix
 Depends: mobilesubstrate
-Version: 0.0.1
+Version: 0.0.2
 Architecture: iphoneos-arm
 Description: Fix for WiFi name bug found in June 2021
 Maintainer: Mario Cheung
