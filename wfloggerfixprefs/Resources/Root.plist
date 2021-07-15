@@ -8,14 +8,12 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
-			<string>A restart of wifid is required for change to take effect. 
-Note: With WFLogger enabled the tweak will try its best to protect you from crashing but there's still a certain chance of crash with malformed names. </string>
+			<string>Keep WFLogger disabled for best protection. 
+Note: With WFLogger enabled I will try my best to protect you from crashing but there's still a chance of crash with malformed names. </string>
 			<key>label</key>
 			<string>For Power Users</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>in.net.mario.tweak.wfloggerfixprefs</string>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
@@ -26,6 +24,14 @@ Note: With WFLogger enabled the tweak will try its best to protect you from cras
 			<string>enablelog</string>
 			<key>label</key>
 			<string>Enable WFLogger</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>wifidNotify</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Apply Change</string>
 		</dict>
 	</array>
 	<key>title</key>

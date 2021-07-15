@@ -1,9 +1,19 @@
 #include <mach/mach.h>
 #include <mach/vm_map.h>
-#include <notify.h>
 #include <substrate.h>
+#import <CoreFoundation/CoreFoundation.h>
+
+extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void);
 
 bool enable_log = false;
+
+void prefchanged_handler() {
+    NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:@"/private/var/mobile/Library/Preferences/in.net.mario.tweak.wfloggerfixprefs.plist"];
+    if (prefs) {
+        NSValue *value = [prefs objectForKey:@"enablelog"];
+        if (value) enable_log = [value boolValue];
+    }
+}
 
 kern_return_t get_vm_protection_64(mach_port_t port, vm_address_t address, vm_prot_t *outprot) {
     if (address <= 0xFFFFFFFF) return KERN_INVALID_ADDRESS;
@@ -80,11 +90,8 @@ void mod_WFLogger__WFLog_message_(id self, SEL _cmd, int level, char *message, .
 }
 
 %ctor {
-    NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:@"/private/var/mobile/Library/Preferences/in.net.mario.tweak.wfloggerfixprefs.plist"];
-    if (prefs) {
-        NSValue *value = [prefs objectForKey:@"enablelog"];
-        if (value) enable_log = [value boolValue];
-    }
+    prefchanged_handler();
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDistributedCenter(), NULL, (CFNotificationCallback)prefchanged_handler, CFSTR("in.net.mario.tweak.wfloggerfixprefs"), NULL, CFNotificationSuspensionBehaviorCoalesce);
     
     MSHookMessageEx(%c(WFLogger), @selector(WFLog:message:), (IMP)&mod_WFLogger__WFLog_message_, (IMP *)&orig_WFLogger__WFLog_message_);
 }
